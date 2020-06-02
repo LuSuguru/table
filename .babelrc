@@ -16,12 +16,22 @@
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-syntax-dynamic-import",
     [
-      "import",
+      "babel-plugin-import",
       {
-        "libraryName": "antd",
-        "style": true
+        "libraryName": "@material-ui/core",
+        "libraryDirectory": "esm",
+        "camel2DashComponentName": false
       },
-      "antd"
+      "core"
+    ],
+    [
+      "babel-plugin-import",
+      {
+        "libraryName": "@material-ui/icons",
+        "libraryDirectory": "esm",
+        "camel2DashComponentName": false
+      },
+      "icons"
     ],
     [
       "import",
