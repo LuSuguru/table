@@ -1,2 +1,2 @@
 // 端口号
-exports.port = 8888
+exports.port = 1314

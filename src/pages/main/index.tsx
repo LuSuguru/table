@@ -1,14 +1,19 @@
-import React, { memo } from 'react'
+import React, { memo, useState, useCallback } from 'react'
 import clsx from 'clsx'
 import { AppBar, IconButton, Typography, Toolbar } from '@material-ui/core'
-import { Menu } from '@material-ui/icons'
+import { Menu as MenuIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
+
+import { Menu, WhiteSpace } from '@/components'
+import { useToggle } from '@/hooks'
+
+import { Search } from './components'
 
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -27,34 +32,65 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  paper: {
-    marginRight: theme.spacing(2),
+  hide: {
+    display: 'none'
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
   },
 }))
 
 function Main() {
   const classes = useStyles()
+  const [visible, onToggle] = useToggle(false)
+  const [selectedKey, onMenuClick] = useState<number>(0)
+
+  const onSearch = useCallback((formData) => {
+    console.log(formData)
+  }, [])
+
   return (
     <div className={classes.root}>
       <AppBar
-        color="secondary"
         position="fixed"
-        className={clsx(classes.appBar)}>
+        className={clsx(classes.appBar, { [classes.appBarShift]: visible })}>
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
-            // onClick={handleDrawerOpen}
+            onClick={onToggle}
             edge="start"
-            className={clsx(classes.menuButton)}
-          >
-            <Menu />
+            className={clsx(classes.menuButton, visible && classes.hide)}>
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Are you OK?
           </Typography>
         </Toolbar>
       </AppBar>
+      <Menu
+        width={drawerWidth}
+        visible={visible}
+        onToggle={onToggle}
+        selectedKey={selectedKey}
+        onMenuClick={onMenuClick} />
+
+      <main className={clsx(classes.content, { [classes.contentShift]: visible })}>
+        <WhiteSpace />
+        <Search onSearch={onSearch} />
+      </main>
     </div>
   )
 }

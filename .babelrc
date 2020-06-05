@@ -40,6 +40,15 @@
         "libraryDirectory": ""
       },
       "component"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "@/hooks",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "hooks"
     ]
   ],
   "presets": [
