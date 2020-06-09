@@ -45,7 +45,7 @@ function Menu(props: Props) {
       <Divider />
 
       <List>
-        {['测试1', '测试2'].map(((item, index) => (
+        {['娇宝~', '杰宝~'].map(((item, index) => (
           <ListItem
             onClick={() => props.onMenuClick(index)}
             key={index}

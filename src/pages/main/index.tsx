@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Menu, WhiteSpace } from '@/components'
 import { useToggle } from '@/hooks'
 
-import { Search } from './components'
+import { Search, Table } from './components'
 
 const drawerWidth = 240
 
@@ -90,6 +90,7 @@ function Main() {
       <main className={clsx(classes.content, { [classes.contentShift]: visible })}>
         <WhiteSpace />
         <Search onSearch={onSearch} />
+        <Table />
       </main>
     </div>
   )

@@ -9,8 +9,6 @@ import dayjs, { Dayjs } from 'dayjs'
 import Form, { Field } from 'rc-field-form'
 import { FormProps } from 'rc-field-form/es/Form'
 
-import { useStates } from '@/hooks'
-
 const FormCompoent: (props: FormProps & PaperProps) => React.ReactElement = Form as any
 const DatePicker: (props: Partial<DatePickerProps>) => React.ReactElement = BaseDatePicker
 
@@ -21,12 +19,6 @@ interface FormData {
 
 interface Props {
   onSearch: (formData: FormData) => void
-}
-
-
-const initialState: State = {
-  startTime: dayjs(),
-  endTime: dayjs().add(7, 'day')
 }
 
 const useStyles = makeStyles((theme) => ({
