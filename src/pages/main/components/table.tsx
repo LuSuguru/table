@@ -1,9 +1,14 @@
 import React, { memo } from 'react'
-import { Paper, Table as BaseTable, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
+import { Paper, Table as BaseTable, TableHead, TableBody, TableRow, TableCell, IconButton } from '@material-ui/core'
+import { Edit as EditIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { Data } from '@/interface/data'
+
 interface Props {
+  onModalOpen: (data: Data) => void
 }
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     backgroundColor: theme.palette.secondary.light
+  },
+  editBtn: {
+    padding: 4,
+    color: theme.palette.primary.dark
   }
 }))
 
@@ -32,13 +41,15 @@ function Table(props: Props) {
     { title: '监督娇按点睡觉，哈哈哈~', dataIndex: 'mustSleep' },
     { title: '提醒宝贝睡觉要盖被子，唔姆~', dataIndex: 'checkCoverQuiet' },
     {
-      title: '操作', dataIndex: 'action', width: 200, render: (row) => {
-
-      }
+      title: '操作', dataIndex: 'action', width: 200, render: (value, row, itemIndex) => (
+        <IconButton className={classes.editBtn} onClick={() => props.onModalOpen(row)}>
+          <EditIcon />
+        </IconButton>
+      )
     },
   ]
 
-  const rows = [
+  const rows: Data[] = [
     {
       id: 1,
       date: '2020-05-27',
@@ -77,23 +88,29 @@ function Table(props: Props) {
   return (
     <Paper className={classes.root} square>
       <BaseTable className={classes.table}>
-        <TableHead className={classes.header}>
-          <colgroup>
-            {config.map(({ width }) => (
-              <col style={{
+        <colgroup>
+          {config.map(({ width, dataIndex }) => (
+            <col
+              key={dataIndex}
+              style={{
                 width: width ? `${width}px` : null,
                 minWidth: width ? `${width}px` : null
               }} />))}
-          </colgroup>
+        </colgroup>
+
+        <TableHead className={classes.header}>
           <TableRow>
             {config.map(({ title }, index) => <TableCell key={index} align="left">{title}</TableCell>)}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {rows.map(item => (
+          {rows.map((item, itemIndex) => (
             <TableRow key={item.id}>
-              {config.map(({ dataIndex }, index) => <TableCell key={`${item.id}-${index}`} align="left">{item[dataIndex]}</TableCell>)}
+              {config.map(({ dataIndex, render }, index) => (
+                <TableCell key={`${item.id}-${index}`} align="left">
+                  {render ? render(item[dataIndex], item, itemIndex) : item[dataIndex]}
+                </TableCell>))}
             </TableRow>
           ))}
         </TableBody>

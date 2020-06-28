@@ -1,13 +1,15 @@
-import React, { memo, useState, useCallback } from 'react'
+import React, { memo, useState, useCallback, useRef } from 'react'
 import clsx from 'clsx'
 import { AppBar, IconButton, Typography, Toolbar } from '@material-ui/core'
 import { Menu as MenuIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Menu, WhiteSpace } from '@/components'
+import { Data } from '@/interface/data'
 import { useToggle } from '@/hooks'
 
-import { Search, Table } from './components'
+import { Search, Table, EditModal } from './components'
+import { RefCurrent } from './components/edit-modal'
 
 const drawerWidth = 240
 
@@ -57,9 +59,14 @@ function Main() {
   const classes = useStyles()
   const [visible, onToggle] = useToggle(false)
   const [selectedKey, onMenuClick] = useState<number>(0)
+  const editModal = useRef<RefCurrent>()
 
   const onSearch = useCallback((formData) => {
     console.log(formData)
+  }, [])
+
+  const onModalOpen = useCallback((data: Data) => {
+    editModal.current.onOpen(data)
   }, [])
 
   return (
@@ -90,8 +97,10 @@ function Main() {
       <main className={clsx(classes.content, { [classes.contentShift]: visible })}>
         <WhiteSpace />
         <Search onSearch={onSearch} />
-        <Table />
+        <Table onModalOpen={onModalOpen} />
       </main>
+
+      <EditModal ref={editModal} />
     </div>
   )
 }

@@ -6982,10 +6982,10 @@ rc-editor-mention@^1.1.13:
     rc-animate "^2.3.0"
     rc-editor-core "~0.8.3"
 
-rc-field-form@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.npm.taobao.org/rc-field-form/download/rc-field-form-1.4.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frc-field-form%2Fdownload%2Frc-field-form-1.4.4.tgz#3689d19a8acd2bb9fe7ff43275bc42170d62f20d"
-  integrity sha1-NonRmorNK7n+f/QydbxCFw1i8g0=
+rc-field-form@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npm.taobao.org/rc-field-form/download/rc-field-form-1.5.0.tgz?cache=0&sync_timestamp=1592966472240&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frc-field-form%2Fdownload%2Frc-field-form-1.5.0.tgz#3c0c7f138c28c2f5c502d5723f2c00513e9f01bb"
+  integrity sha1-PAx/E4wowvXFAtVyPywAUT6fAbs=
   dependencies:
     "@babel/runtime" "^7.8.4"
     async-validator "^3.0.3"
