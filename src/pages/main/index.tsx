@@ -5,7 +5,7 @@ import { Menu as MenuIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Menu, WhiteSpace } from '@/components'
-import { Data } from '@/interface/data'
+import { BoyData } from '@/interface/data'
 import { useToggle } from '@/hooks'
 
 import { Search, Table, EditModal } from './components'
@@ -65,7 +65,7 @@ function Main() {
     console.log(formData)
   }, [])
 
-  const onModalOpen = useCallback((data: Data) => {
+  const onModalOpen = useCallback((data: BoyData) => {
     editModal.current.onOpen(data)
   }, [])
 

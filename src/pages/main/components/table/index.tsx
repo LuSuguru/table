@@ -3,12 +3,14 @@ import { Paper, Table as BaseTable, TableHead, TableBody, TableRow, TableCell, I
 import { Edit as EditIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Data } from '@/interface/data'
+import { BoyData } from '@/interface/data'
+
+import Row from './row'
+import { getTableConfig, ConfigType, Data } from './config'
 
 interface Props {
-  onModalOpen: (data: Data) => void
+  onModalOpen: (data: BoyData) => void
 }
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,35 +33,30 @@ const useStyles = makeStyles((theme) => ({
 function Table(props: Props) {
   const classes = useStyles()
 
-  const config = [
-    { title: '日期', dataIndex: 'date' },
-    { title: '每晚11：30睡觉，哦吼~', dataIndex: 'sleep' },
-    { title: '每日事情完成，不拖沓，嘿嘿~', dataIndex: 'finish' },
-    { title: '看书1小时，哈哈哈~', dataIndex: 'readed' },
-    { title: '跑步（一周三次）哈哈哈~', dataIndex: 'running' },
-    { title: '开心的笑了O(∩_∩)O，哈哈哈~', dataIndex: 'smile' },
-    { title: '监督娇按点睡觉，哈哈哈~', dataIndex: 'mustSleep' },
-    { title: '提醒宝贝睡觉要盖被子，唔姆~', dataIndex: 'checkCoverQuiet' },
-    {
-      title: '操作', dataIndex: 'action', width: 200, render: (value, row, itemIndex) => (
-        <IconButton className={classes.editBtn} onClick={() => props.onModalOpen(row)}>
-          <EditIcon />
-        </IconButton>
-      )
-    },
-  ]
+  const tableConfig = getTableConfig('boy')
+  const actionConfig: typeof tableConfig = [{
+    title: '操作', dataIndex: 'action', width: 200, render: (value, row) => (
+      <IconButton className={classes.editBtn} onClick={() => props.onModalOpen(row)}>
+        <EditIcon />
+      </IconButton>
+    )
+  }]
 
-  const rows: Data[] = [
+  const config = [...tableConfig, ...actionConfig]
+
+
+  const rows: ConfigType<typeof config>[] = [
     {
       id: 1,
       date: '2020-05-27',
       sleep: '11.45(不要打我)',
       finish: '这个完成啦，嘻嘻',
       readed: '这个也完成了，嘻嘻（看的是自控力）',
-      running: '',
-      smile: '今天笑了好多次',
-      mustSleep: '完成啦',
-      checkCoverQuiet: '这个从5.19开始'
+      running: '5.3KM',
+      smile: true,
+      mustSleep: true,
+      checkCoverQuiet: true,
+      story: '见面了，面对面的时候会心安一点，杰说了很多很多，但我也没怎么说话。晚上打完电话感觉好多了~',
     },
     {
       id: 2,
@@ -67,10 +64,11 @@ function Table(props: Props) {
       sleep: '11.45(不要打我)',
       finish: '这个完成啦，嘻嘻',
       readed: '这个也完成了，嘻嘻（看的是自控力）',
-      running: '',
-      smile: '今天笑了好多次',
-      mustSleep: '完成啦',
-      checkCoverQuiet: '这个从5.19开始'
+      running: '5.5KM',
+      smile: true,
+      mustSleep: true,
+      checkCoverQuiet: true,
+      story: '见面了，面对面的时候会心安一点，杰说了很多很多，但我也没怎么说话。晚上打完电话感觉好多了~',
     },
     {
       id: 3,
@@ -78,10 +76,11 @@ function Table(props: Props) {
       sleep: '11.45(不要打我)',
       finish: '这个完成啦，嘻嘻',
       readed: '这个也完成了，嘻嘻（看的是自控力）',
-      running: '',
-      smile: '今天笑了好多次',
-      mustSleep: '完成啦',
-      checkCoverQuiet: '这个从5.19开始'
+      running: '5.3KM',
+      smile: true,
+      mustSleep: true,
+      checkCoverQuiet: true,
+      story: '见面了，面对面的时候会心安一点，杰说了很多很多，但我也没怎么说话。晚上打完电话感觉好多了~',
     }
   ]
 
@@ -89,6 +88,11 @@ function Table(props: Props) {
     <Paper className={classes.root} square>
       <BaseTable className={classes.table}>
         <colgroup>
+          <col
+            style={{
+              width: 50,
+              minWidth: 50
+            }} />
           {config.map(({ width, dataIndex }) => (
             <col
               key={dataIndex}
@@ -100,19 +104,13 @@ function Table(props: Props) {
 
         <TableHead className={classes.header}>
           <TableRow>
+            <TableCell />
             {config.map(({ title }, index) => <TableCell key={index} align="left">{title}</TableCell>)}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {rows.map((item, itemIndex) => (
-            <TableRow key={item.id}>
-              {config.map(({ dataIndex, render }, index) => (
-                <TableCell key={`${item.id}-${index}`} align="left">
-                  {render ? render(item[dataIndex], item, itemIndex) : item[dataIndex]}
-                </TableCell>))}
-            </TableRow>
-          ))}
+          {rows.map((row, index) => <Row {...{ row, index, config }} key={row.id || row.key} />)}
         </TableBody>
       </BaseTable>
     </Paper>

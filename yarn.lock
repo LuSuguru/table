@@ -1068,10 +1068,10 @@
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha1-aQoUdbhPKohP0HzXl8APXzE1bqg=
 
-"@types/react-dom@^16.8.4":
-  version "16.8.4"
-  resolved "https://registry.npm.taobao.org/@types/react-dom/download/@types/react-dom-16.8.4.tgz#7fb7ba368857c7aa0f4e4511c4710ca2c5a12a88"
-  integrity sha1-f7e6NohXx6oPTkURxHEMosWhKog=
+"@types/react-dom@^16.9.8":
+  version "16.9.8"
+  resolved "https://registry.npm.taobao.org/@types/react-dom/download/@types/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
+  integrity sha1-/kweEd/GcVVzPfpqplEItJcctCM=
   dependencies:
     "@types/react" "*"
 
@@ -1110,6 +1110,14 @@
   version "16.8.23"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.8.23.tgz#ec6be3ceed6353a20948169b6cb4c97b65b97ad2"
   integrity sha1-7Gvjzu1jU6IJSBabbLTJe2W5etI=
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.9.41":
+  version "16.9.41"
+  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.41.tgz#925137ee4d2ff406a0ecf29e8e9237390844002e"
+  integrity sha1-klE37k0v9Aag7PKejpI3OQhEAC4=
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"

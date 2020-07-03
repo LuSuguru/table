@@ -1,20 +1,36 @@
 import React, { memo, useImperativeHandle, forwardRef, Ref } from 'react'
-import { Dialog, DialogActions, Button, DialogTitle, DialogContent, TextField } from '@material-ui/core'
+import { Dialog, DialogActions, Button, DialogTitle, DialogContent, TextField, FormControlLabel, FormControl, Checkbox } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import Form, { Field } from 'rc-field-form'
 
 import { useToggle } from '@/hooks'
-import { Data } from '@/interface/data'
+import { BoyData } from '@/interface/data'
+
+const useStyles = makeStyles((theme) => ({
+  formItem: {
+    flexDirection: 'row'
+  },
+  checkboxLabel: {
+    marginTop: 1
+  },
+  checkbox: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(0.5)
+  }
+}))
 
 export interface RefCurrent {
-  onOpen: (data: Data) => void
+  onOpen: (data: BoyData) => void
 }
 
 function EditModal(_props: any, ref: Ref<RefCurrent>) {
   const [visible, onToggle] = useToggle(false)
+  const classes = useStyles()
   const [form] = Form.useForm()
 
   useImperativeHandle(ref, () => ({
-    onOpen(data: Data) {
+    onOpen(data: BoyData) {
+      console.log(data)
       onToggle()
     }
   }), [])
@@ -23,7 +39,6 @@ function EditModal(_props: any, ref: Ref<RefCurrent>) {
     <Dialog
       open={visible}
       onClose={onToggle}
-      // maxWidth="s"
       fullWidth>
       <DialogTitle>哦吼，开始记录了咩？</DialogTitle>
 
@@ -56,6 +71,29 @@ function EditModal(_props: any, ref: Ref<RefCurrent>) {
               margin="dense"
               fullWidth />
           </Field>
+
+          <FormControl fullWidth className={classes.formItem} margin="dense">
+            <Field name="smile">
+              <FormControlLabel
+                control={<Checkbox />}
+                classes={{ label: classes.checkboxLabel }}
+                label="笑了嘛" />
+            </Field>
+
+            <Field name="mustSleep" valuePropName="checked">
+              <FormControlLabel
+                control={<Checkbox />}
+                label="监督娇按点睡觉"
+                classes={{ label: classes.checkboxLabel }} />
+            </Field>
+
+            <Field name="checkCoverQuiet">
+              <FormControlLabel
+                control={<Checkbox />}
+                label="提醒娇睡觉要盖被子"
+                classes={{ label: classes.checkboxLabel }} />
+            </Field>
+          </FormControl>
         </Form>
       </DialogContent>
 
