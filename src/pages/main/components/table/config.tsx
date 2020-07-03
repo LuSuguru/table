@@ -1,9 +1,7 @@
-import { CustomData, TableConfig, BoyData, GirlData } from '@/interface/data'
+import { CustomData, TableConfig, BoyData, GirlData, Sex, Data } from '@/interface/data'
 import { generateRandomText } from '@/utils'
 
-export type Data<T extends 'boy' | 'girl'> = T extends 'boy' ? BoyData : GirlData
-
-export function getTableConfig<T extends 'boy' | 'girl'>(type: T): TableConfig<Data<T>>[] {
+export function getTableConfig(type: Sex): TableConfig<Data>[] {
   const flagRender = (value: boolean) => generateRandomText(value)
 
   const customConfig: TableConfig<CustomData>[] = [
@@ -12,7 +10,7 @@ export function getTableConfig<T extends 'boy' | 'girl'>(type: T): TableConfig<D
     { title: '每日事情完成，不拖沓，嘿嘿~', dataIndex: 'finish' },
   ]
 
-  if (type === 'boy') {
+  if (type === Sex.Boy) {
     return [
       ...customConfig,
       ...[
@@ -25,18 +23,16 @@ export function getTableConfig<T extends 'boy' | 'girl'>(type: T): TableConfig<D
     ]
   }
 
-  if (type === 'girl') {
+  if (type === Sex.Girl) {
     return [
       ...customConfig,
       ...[
         { title: '瑜伽~', dataIndex: 'yoga', render: flagRender },
         { title: '游泳~', dataIndex: 'swimming', render: flagRender },
         { title: '盖了被子~', dataIndex: 'coverQuiet', render: flagRender },
-        { title: '每日份的开心~', dataIndex: 'happy' },
+        { title: '每日份的开心~', dataIndex: 'happy', render: flagRender },
         { title: '陪杰~', dataIndex: 'company' }
       ] as TableConfig<GirlData>[]
     ]
   }
 }
-
-export type ConfigType<T> = T extends TableConfig<infer S>[] ? S : any

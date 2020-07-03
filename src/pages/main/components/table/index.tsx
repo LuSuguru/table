@@ -3,13 +3,15 @@ import { Paper, Table as BaseTable, TableHead, TableBody, TableRow, TableCell, I
 import { Edit as EditIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { BoyData } from '@/interface/data'
+import { Sex, Data } from '@/interface/data'
 
 import Row from './row'
-import { getTableConfig, ConfigType, Data } from './config'
+import { getTableConfig } from './config'
+import { boyRows, girlRows } from './mock'
 
 interface Props {
-  onModalOpen: (data: BoyData) => void
+  onModalOpen: (data: Data) => void
+  type: Sex
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -31,11 +33,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Table(props: Props) {
+  const { type } = props
   const classes = useStyles()
 
-  const tableConfig = getTableConfig('boy')
+  const tableConfig = getTableConfig(type)
   const actionConfig: typeof tableConfig = [{
-    title: '操作', dataIndex: 'action', width: 200, render: (value, row) => (
+    title: '操作', dataIndex: 'action', width: 200, render: (_value, row) => (
       <IconButton className={classes.editBtn} onClick={() => props.onModalOpen(row)}>
         <EditIcon />
       </IconButton>
@@ -43,46 +46,7 @@ function Table(props: Props) {
   }]
 
   const config = [...tableConfig, ...actionConfig]
-
-
-  const rows: ConfigType<typeof config>[] = [
-    {
-      id: 1,
-      date: '2020-05-27',
-      sleep: '11.45(不要打我)',
-      finish: '这个完成啦，嘻嘻',
-      readed: '这个也完成了，嘻嘻（看的是自控力）',
-      running: '5.3KM',
-      smile: true,
-      mustSleep: true,
-      checkCoverQuiet: true,
-      story: '见面了，面对面的时候会心安一点，杰说了很多很多，但我也没怎么说话。晚上打完电话感觉好多了~',
-    },
-    {
-      id: 2,
-      date: '2020-05-27',
-      sleep: '11.45(不要打我)',
-      finish: '这个完成啦，嘻嘻',
-      readed: '这个也完成了，嘻嘻（看的是自控力）',
-      running: '5.5KM',
-      smile: true,
-      mustSleep: true,
-      checkCoverQuiet: true,
-      story: '见面了，面对面的时候会心安一点，杰说了很多很多，但我也没怎么说话。晚上打完电话感觉好多了~',
-    },
-    {
-      id: 3,
-      date: '2020-05-27',
-      sleep: '11.45(不要打我)',
-      finish: '这个完成啦，嘻嘻',
-      readed: '这个也完成了，嘻嘻（看的是自控力）',
-      running: '5.3KM',
-      smile: true,
-      mustSleep: true,
-      checkCoverQuiet: true,
-      story: '见面了，面对面的时候会心安一点，杰说了很多很多，但我也没怎么说话。晚上打完电话感觉好多了~',
-    }
-  ]
+  const rows: Data[] = type === 'boy' ? boyRows : girlRows
 
   return (
     <Paper className={classes.root} square>

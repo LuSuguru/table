@@ -4,10 +4,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import { ChevronLeft, AccountBox } from '@material-ui/icons'
 
 import { WhiteSpace } from '@/components'
+import { Sex } from '@/interface/data'
 
 interface Props {
-  selectedKey: number
-  onMenuClick: (key: number) => void
+  selectedKey: Sex
+  onMenuClick: (key: Sex) => void
   width: number
   visible: boolean
   onToggle: () => void
@@ -45,15 +46,18 @@ function Menu(props: Props) {
       <Divider />
 
       <List>
-        {['娇宝~', '杰宝~'].map(((item, index) => (
+        {[
+          { name: '娇宝~', key: Sex.Girl },
+          { name: '杰宝~', key: Sex.Boy }
+        ].map((({ key, name }) => (
           <ListItem
-            onClick={() => props.onMenuClick(index)}
-            key={index}
+            onClick={() => props.onMenuClick(key)}
+            key={key}
             button>
-            <ListItemIcon className={selectedKey === index ? classes.selected : ''}>
+            <ListItemIcon className={selectedKey === key ? classes.selected : ''}>
               <AccountBox />
             </ListItemIcon>
-            <ListItemText className={selectedKey === index ? classes.selected : ''}>{item}</ListItemText>
+            <ListItemText className={selectedKey === key ? classes.selected : ''}>{name}</ListItemText>
           </ListItem>
         )))}
       </List>

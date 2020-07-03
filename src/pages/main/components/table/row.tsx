@@ -3,12 +3,12 @@ import { TableRow, TableCell, Collapse, IconButton, Box, Typography } from '@mat
 import { KeyboardArrowDown, KeyboardArrowRight, SentimentVerySatisfied } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { BoyData, TableConfig, GirlData } from '@/interface/data'
+import { TableConfig, Data } from '@/interface/data'
 import { useToggle } from '@/hooks'
 
-interface Props<T extends GirlData | BoyData> {
-  row: T
-  config: TableConfig<T>[]
+interface Props {
+  row: Data
+  config: TableConfig<Data>[]
   index: number
 }
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function Row<T extends GirlData | BoyData>(props: Props<T>) {
+function Row(props: Props) {
   const { config, row, index } = props
 
   const [visible, onToggle] = useToggle(false)

@@ -5,7 +5,7 @@ import { Menu as MenuIcon } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Menu, WhiteSpace } from '@/components'
-import { BoyData } from '@/interface/data'
+import { Sex, Data } from '@/interface/data'
 import { useToggle } from '@/hooks'
 
 import { Search, Table, EditModal } from './components'
@@ -58,14 +58,14 @@ const useStyles = makeStyles((theme) => ({
 function Main() {
   const classes = useStyles()
   const [visible, onToggle] = useToggle(false)
-  const [selectedKey, onMenuClick] = useState<number>(0)
+  const [selectedKey, onMenuClick] = useState<Sex>(Sex.Girl)
   const editModal = useRef<RefCurrent>()
 
   const onSearch = useCallback((formData) => {
     console.log(formData)
   }, [])
 
-  const onModalOpen = useCallback((data: BoyData) => {
+  const onModalOpen = useCallback((data: Data) => {
     editModal.current.onOpen(data)
   }, [])
 
@@ -97,7 +97,7 @@ function Main() {
       <main className={clsx(classes.content, { [classes.contentShift]: visible })}>
         <WhiteSpace />
         <Search onSearch={onSearch} />
-        <Table onModalOpen={onModalOpen} />
+        <Table onModalOpen={onModalOpen} type={selectedKey} />
       </main>
 
       <EditModal ref={editModal} />

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Form, { Field } from 'rc-field-form'
 
 import { useToggle } from '@/hooks'
-import { BoyData } from '@/interface/data'
+import { Data } from '@/interface/data'
 
 const useStyles = makeStyles((theme) => ({
   formItem: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export interface RefCurrent {
-  onOpen: (data: BoyData) => void
+  onOpen: (data: Data) => void
 }
 
 function EditModal(_props: any, ref: Ref<RefCurrent>) {
@@ -29,7 +29,7 @@ function EditModal(_props: any, ref: Ref<RefCurrent>) {
   const [form] = Form.useForm()
 
   useImperativeHandle(ref, () => ({
-    onOpen(data: BoyData) {
+    onOpen(data: Data) {
       console.log(data)
       onToggle()
     }
