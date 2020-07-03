@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Main() {
   const classes = useStyles()
-  const [visible, onToggle] = useToggle(false)
+  const [visible, onToggle] = useToggle(true)
   const [selectedKey, onMenuClick] = useState<Sex>(Sex.Girl)
   const editModal = useRef<RefCurrent>()
 
@@ -65,8 +65,8 @@ function Main() {
     console.log(formData)
   }, [])
 
-  const onModalOpen = useCallback((data: Data) => {
-    editModal.current.onOpen(data)
+  const onModalOpen = useCallback((modalType: 'add' | 'edit', data?: Data) => {
+    editModal.current.onOpen(modalType, data)
   }, [])
 
   return (
@@ -96,11 +96,11 @@ function Main() {
 
       <main className={clsx(classes.content, { [classes.contentShift]: visible })}>
         <WhiteSpace />
-        <Search onSearch={onSearch} />
+        <Search onSearch={onSearch} onAdd={onModalOpen} />
         <Table onModalOpen={onModalOpen} type={selectedKey} />
       </main>
 
-      <EditModal ref={editModal} />
+      <EditModal ref={editModal} type={selectedKey} />
     </div>
   )
 }

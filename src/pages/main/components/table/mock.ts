@@ -47,9 +47,9 @@ export const girlRows: GirlData[] = [{
   yoga: true,
   swimming: true,
   coverQuiet: true,
-  happy: true,
+  smile: true,
   company: '陪了，有见面～❤️❤️',
-  story: '因为酸奶见到了娇，开心日常的一天~~',
+  story: '下午杰给我点了水果茶，很开心～今天下班也很晚，一路小跑回来的。想着跟杰说要尽量好好吃饭好好睡觉，所以回来就去洗澡了，想着收拾完睡前聊一会儿……洗完澡回来，收到了晚安，好吧，应该是不太想聊或者累了。那……晚安了，有点失落呢 “温度”有点低',
 }, {
   id: 2,
   date: '2020-05-27',
@@ -58,9 +58,9 @@ export const girlRows: GirlData[] = [{
   yoga: true,
   swimming: true,
   coverQuiet: true,
-  happy: true,
+  smile: true,
   company: '陪了，有见面～❤️❤️',
-  story: '因为酸奶见到了娇，开心日常的一天~~',
+  story: '下午杰给我点了水果茶，很开心～今天下班也很晚，一路小跑回来的。想着跟杰说要尽量好好吃饭好好睡觉，所以回来就去洗澡了，想着收拾完睡前聊一会儿……洗完澡回来，收到了晚安，好吧，应该是不太想聊或者累了。那……晚安了，有点失落呢 “温度”有点低',
 }, {
   id: 3,
   date: '2020-05-27',
@@ -69,7 +69,7 @@ export const girlRows: GirlData[] = [{
   yoga: true,
   swimming: true,
   coverQuiet: true,
-  happy: true,
+  smile: true,
   company: '陪了，有见面～❤️❤️',
-  story: '因为酸奶见到了娇，开心日常的一天~~',
+  story: '下午杰给我点了水果茶，很开心～今天下班也很晚，一路小跑回来的。想着跟杰说要尽量好好吃饭好好睡觉，所以回来就去洗澡了，想着收拾完睡前聊一会儿……洗完澡回来，收到了晚安，好吧，应该是不太想聊或者累了。那……晚安了，有点失落呢 “温度”有点低',
 }]

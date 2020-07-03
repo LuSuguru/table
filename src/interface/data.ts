@@ -11,6 +11,7 @@ export interface CustomData {
   date?: string
   sleep?: string
   finish?: string
+  smile?: boolean
   story?: string
   action?: string
 }
@@ -18,7 +19,6 @@ export interface CustomData {
 export interface BoyData extends CustomData {
   readed?: string
   running?: string
-  smile?: boolean
   mustSleep?: boolean
   checkCoverQuiet?: boolean
 }
@@ -27,7 +27,6 @@ export interface GirlData extends CustomData {
   yoga?: boolean
   swimming?: boolean
   coverQuiet?: boolean
-  happy?: boolean
   company?: string
 }
 

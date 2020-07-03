@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { Paper, IconButton } from '@material-ui/core'
+import { Paper, IconButton, Button } from '@material-ui/core'
 import { PaperProps } from '@material-ui/core/Paper'
-import { Search as SearchIcon } from '@material-ui/icons'
+import { Search as SearchIcon, AddCircleOutline } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 import { DatePicker as BaseDatePicker } from '@material-ui/pickers'
 import { DatePickerProps } from '@material-ui/pickers/DatePicker'
@@ -19,11 +19,16 @@ interface FormData {
 
 interface Props {
   onSearch: (formData: FormData) => void
+  onAdd: (type: 'add' | 'edit') => void
 }
 
 const useStyles = makeStyles((theme) => ({
   search: {
     padding: theme.spacing(2)
+  },
+  button: {
+    float: 'right',
+    marginTop: theme.spacing(1.5)
   }
 }))
 
@@ -63,6 +68,14 @@ function Search(props: Props) {
       <IconButton onClick={onSearch}>
         <SearchIcon fontSize="large" color="secondary" />
       </IconButton>
+
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        onClick={() => props.onAdd('add')}
+        startIcon={<AddCircleOutline />}>添加
+      </Button>
     </FormCompoent>
   )
 }

@@ -10,7 +10,7 @@ import { getTableConfig } from './config'
 import { boyRows, girlRows } from './mock'
 
 interface Props {
-  onModalOpen: (data: Data) => void
+  onModalOpen: (type: 'add' | 'edit', data?: Data) => void
   type: Sex
 }
 
@@ -39,7 +39,7 @@ function Table(props: Props) {
   const tableConfig = getTableConfig(type)
   const actionConfig: typeof tableConfig = [{
     title: '操作', dataIndex: 'action', width: 200, render: (_value, row) => (
-      <IconButton className={classes.editBtn} onClick={() => props.onModalOpen(row)}>
+      <IconButton className={classes.editBtn} onClick={() => props.onModalOpen('edit', row)}>
         <EditIcon />
       </IconButton>
     )

@@ -21,3 +21,10 @@ export function generateRandomText(isSuccess: boolean) {
 
   return messageMap[mapKey]
 }
+
+// 异步执行方法
+export const nextTick = (callback: any) => (...args) => {
+  setTimeout(() => {
+    callback(...args)
+  }, 0)
+}
