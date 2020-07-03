@@ -4,7 +4,7 @@ export const boyRows: BoyData[] = [
   {
     id: 1,
     date: '2020-05-27',
-    sleep: '11.45(不要打我)',
+    sleep: '11:45',
     finish: '这个完成啦，嘻嘻',
     readed: '这个也完成了，嘻嘻（看的是自控力）',
     running: '5.3KM',
@@ -16,7 +16,7 @@ export const boyRows: BoyData[] = [
   {
     id: 2,
     date: '2020-05-27',
-    sleep: '11.45(不要打我)',
+    sleep: '11:45',
     finish: '这个完成啦，嘻嘻',
     readed: '这个也完成了，嘻嘻（看的是自控力）',
     running: '5.3KM',
@@ -28,7 +28,7 @@ export const boyRows: BoyData[] = [
   {
     id: 3,
     date: '2020-05-27',
-    sleep: '11.45(不要打我)',
+    sleep: '11:45',
     finish: '这个完成啦，嘻嘻',
     readed: '这个也完成了，嘻嘻（看的是自控力）',
     running: '5.3KM',
@@ -42,7 +42,7 @@ export const boyRows: BoyData[] = [
 export const girlRows: GirlData[] = [{
   id: 1,
   date: '2020-05-27',
-  sleep: '11.45(不要打我)',
+  sleep: '11:45',
   finish: '这个完成啦，嘻嘻',
   yoga: true,
   swimming: true,
@@ -53,7 +53,7 @@ export const girlRows: GirlData[] = [{
 }, {
   id: 2,
   date: '2020-05-27',
-  sleep: '11.45(不要打我)',
+  sleep: '11:45',
   finish: '这个完成啦，嘻嘻',
   yoga: true,
   swimming: true,
@@ -64,7 +64,7 @@ export const girlRows: GirlData[] = [{
 }, {
   id: 3,
   date: '2020-05-27',
-  sleep: '11.45(不要打我)',
+  sleep: '11:45',
   finish: '这个完成啦，嘻嘻',
   yoga: true,
   swimming: true,

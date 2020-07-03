@@ -31,8 +31,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+const Content = memo(({ config, row, index }: Props) => (
+  <>
+    {config.map(({ dataIndex, render }) => (
+      <TableCell key={dataIndex as string} align="left">
+        {render ? render(row[dataIndex], row, index) : row[dataIndex]}
+      </TableCell>))}
+  </>
+))
+
 function Row(props: Props) {
-  const { config, row, index } = props
+  const { config, row } = props
 
   const [visible, onToggle] = useToggle(false)
   const classes = useStyles()
@@ -46,12 +55,7 @@ function Row(props: Props) {
           </IconButton>
         </TableCell>
 
-        {
-          config.map(({ dataIndex, render }) => (
-            <TableCell key={dataIndex as string} align="left">
-              {render ? render(row[dataIndex], row, index) : row[dataIndex]}
-            </TableCell>))
-        }
+        <Content {...props} />
       </TableRow>
 
       <TableRow>
