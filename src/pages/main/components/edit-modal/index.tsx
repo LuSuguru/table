@@ -52,6 +52,7 @@ function EditModal(props: Props, ref: Ref<RefCurrent>) {
     }
   }), [])
 
+  // TODO:校验
   return (
     <Dialog
       open={visible}
@@ -60,7 +61,7 @@ function EditModal(props: Props, ref: Ref<RefCurrent>) {
       <DialogTitle>哦吼，开始记录了咩？</DialogTitle>
 
       <DialogContent>
-        <Form form={form} initialValues={{ sleep: null }}>
+        <Form form={form} initialValues={{ sleep: dayjs() }}>
           <Field name="sleep">
             <TimePicker
               className={classes.fullWidth}
